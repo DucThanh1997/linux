@@ -20,7 +20,8 @@ cú pháp để tạo: `ln file1.txt file2.txt`
 
 ## softlink:
  giống như cái kia nhưng xóa cái file gốc kia thì file còn lại không truy cập được nữa
-cú pháp để tạo: `ln -s file1.txt file4.txt`
+cú pháp để tạo: 
+`ln -s file1.txt file4.txt`
 
 # The File Stream
 Khi các dòng lệnh được thực thi, mặc định sẽ có 3 luồng fidinle chuẩn:
@@ -40,7 +41,7 @@ Ví dụ bạn muốn lệnh "echo" kết xuất dữ liệu ra một tệp tin,
 `$echo "Hello" > hello.txt` 
 Ghi vào file hello chữ hello 
 
-##Stderr: 
+## Stderr: 
 Là nơi các chương trình báo lỗi, cũng giống như ở trên, nó thường là thiết bị cuối (terminal), và cũng có thể chuyển hướng. 
 
 File descriptors trong Linux có các quy ước: 0 là stdin, 1 là stdout, 2 là stderr.
