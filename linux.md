@@ -366,6 +366,60 @@ Các máy chủ có quyền hạn sau:
     - `ro`: Chỉ được đọc
     - `noacess`: Cấm truy cập vào các thư mục con của thư mục đc chia sẻ
 
+## Cài đặt trên Ubuntu
+### Cài đặt nfs trên server và client:
 
+`sudo apt-get install nfs-kernel-server`
+Khởi động nfs trên server và client:
+
+`service nfs-kernel-server start`
+Trên máy chủ, tôi sẽ tạo ra một thư mục để share các tệp tin và thay đôi quyền sở hữu tệp tin thành không sở hưu bởi ai cả:
+
+`sudo mkdir /var/nfs/general -p
+sudo chown nobody:nogroup /var/nfs/general`
+Sửa nội dung file `/etc/exports` để share cả thư mục vừa tạo và thư mục /home
+
+$ `sudo nano /etc/exports`
+`/var/nfs/general 192.168.60.130(rw,sync,no_subtree_check)
+/home 192.168.60.130(rw,sync,no_root_squash,no_subtree_check,no_all_squash)` 
+Trong đó:
+
+`rw`: Tùy chọn này cho phép máy tính client truy cập cả đọc và viết vào bộ đĩa (volume).
+
+`sync`: Tùy chọn này bắt buộc NFS phải ghi các thay đổi vào đĩa trước khi trả lời. Điều này dẫn đến một môi trường ổn định và phù hợp hơn kể từ khi trả lời phản ánh tình trạng thực tế của bộ đĩa (volume) từ xa. Tuy nhiên, nó cũng làm giảm tốc độ của hoạt động tập tin.
+
+`no_subtree_check`: tùy chọn này ngăn cản việc kiểm tra cây con, đó là một quá trình mà host phải kiểm tra xem các tập tin thực sự vẫn có sẵn trong cây xuất cho mỗi yêu cầu.
+
+`no_root_squash`: Theo mặc định, NFS chuyển yêu cầu từ người dùng root từ xa vào một người dùng không có đặc quyền trên máy chủ. Điều này đã được dự định như là tính năng bảo mật để ngăn chặn một tài khoản root trên máy khách (client) sử dụng hệ thống tập tin của máy chủ như là root.
+
+`no_all_squash`: enables the user’s authority
+
+Sau đó khởi động lại server:
+
+`sudo systemctl restart nfs-kernel-server`
+
+Nếu firewall trên server đang bật (check status) thì cần điều chỉnh lại để mở cổng 2049, dùng lệnh sau để thêm rule:
+
+`sudo ufw allow from 192.168.60.130 to any port nfs
+sudo ufw status`
+
+Trên client:
+
+`sudo mkdir -p /nfs/general
+sudo mkdir -p /nfs/home` 
+
+mount các thư mục vào client:
+
+`sudo mount 192.168.60.134:/var/nfs/general /nfs/general
+sudo mount 192.168.60.134:/home /nfs/home`	
+
+Kiểm tra xem đã mount được chưa bằng lệnh df -h. Giờ hãy thử tạo một file mới trong thư mục general trong client hoặc server ta sẽ thấy nó trên máy còn lại.
+
+Gắn thư mục NFS trên client lúc khởi động bằng cách thêm chúng vào tệp tin /etc/fstab dòng sau:
+
+`192.168.60.134:/var/nfs/general /nfs/general nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+192.168.60.134:/home /nfs/home nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0`
+
+Nếu không dùng nữa thì trên client unmount thư mục share đó đi.
 
 
