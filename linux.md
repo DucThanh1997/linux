@@ -426,13 +426,13 @@ Nếu không dùng nữa thì trên client unmount thư mục share đó đi.
  
  - B1: tải kernel-server về `sudo apt-get install nfs-kernel-server` cho cả client và server
  - B2: start service đó: `service nfs-kernel-server start` cho cả client và server
- - B3: tạo thư mục để share `sudo mkdir /share` trên server
- - B4: edit file /etc/exports bằng lệnh: `sudo nano /etc/exports` và thêm dòng lệnh `/share1  192.168.0.136 (rw,sync,no_root_squash,no_subtree_check,no_all_squash)`
+ - B3: tạo thư mục để share `sudo mkdir /mnt/share` trên server
+ - B4: edit file /etc/exports bằng lệnh: `sudo nano /etc/exports` và thêm dòng lệnh `mnt/share1  192.168.0.136 (rw,sync,no_root_squash,no_subtree_check,no_all_squash)`
  - B6: tắt firewall trên server: `sudo ufw disable`
  - B5: restart lại kernel-server: `sudo systemctl restart nfs-kernel-server`
  - B6: thoát khỏi server và tạo file trên client: `mkdir share1`
  - B7: tắt firewall trên server: `sudo ufw disable`
- - B8: mount file: sudo mount 192.168.100.23:/share1 /share1
+ - B8: mount file: `sudo mount 192.168.100.23:/mnt/share1 /share1`
  
 
 
