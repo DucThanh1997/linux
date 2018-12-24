@@ -1,0 +1,53 @@
+# Linux Security
+
+Mặc định, Linux có nhiều loại tài khoản để phân chia cho các processes và workloads:
+
+1. root
+2. system
+3. normal
+4. network
+
+trong đó root có quyền cao nhất. Nó có quyền quản trị hệ thống, tạo xóa, hay thay đổi mật khẩu tài khoản, kiểm tra log, cài đặt phần mềm,...
+
+Với môi trường làm việc an toàn, nên giới hạn các quyền hạn ở mức tối thiểu cho các tài khoản và loại bỏ các tài khoản không hoạt động. Command `last` sẽ show ra lịch sử người dùng đăng nhập vào hệ thống, xác định các tài khoản ít và đã lâu rồi không sử dụng để loại bỏ.
+
+
+# Sudo Command
+
+su:
+```buildoutcfg
+Dùng để nâng quyền, bạn cần nhập password cho root
+Sau khi nâng quyền, người dùng có thể thực hiện bất cứ lệnh nào mà root có thể thực hiện mà không yêu cầu lại password
+Không cần thuộc group sudo
+Giới hạn một số tính năng đăng nhập
+
+```
+
+
+sudo
+```buildoutcfg
+Xin quyền root, bạn cần nhập password của chính bạn
+Những gì user có thể thực hiện được kiểm soát và có thể bị hạn chế, sau một thời gian nhất định phải nhập lại mật khẩu.
+Phải thuộc nhóm sudo mới có thể dùng lệnh
+Các tính năng đăng nhập chi tiết có sẵn
+
+```
+
+
+# Tiến trình riêng biệt (The process isolation)
+
+Linux bảo mật hơn các hệ điều hành khác là do các tiến trình chạy độc lập với nhau. Một tiến trình không thể truy câp tài nguyên của các tiến trình khác kể cả khi nó đang chạy cùng phiên cua một người dùng.
+
+Một cơ chế đã được bổ sung vào để bảo mật và hạn chế tối thiểu các mối nguy hại đã được giới thiệu gần đây:
+
+- Control Groups: cho phép người quản trị phân nhóm các tiến trình và cấp tài nguyên hữu hạn cho mỗi nhóm (cgroup).
+- Linux Containers : cho phép chạy nhiều phiên bản Linux trên cùng một hệ thống.
+- Virtualization : phần cứng được tính toán sao cho không chỉ tách biệt các tiến trình, đồng thời cũng cũng phải tách biệt với phần cứng mà các máy ảo sử dụng trên cùng một host vật lý.
+
+
+# Public/Private keys authentication
+Public Key Encryption sẽ cho phép server và client tin tưởng lẫn nhau mà không cần password. Private key sẽ được cài đặt trên server, public key sẽ được chia sẻ cho clients. Private key phải được giữ bí mật, public key có thể được phân phôi tự do giữa các client. Hai khóa sẽ được mã hóa cùng nhau nên chúng là một cặp. Server cần phải ủy quyền cho public key thì client mới sử dụng được.
+
+Sử sụng Public Key Encryption bạn sẽ không cần password để đăng nhập, và có thể vô hiệu hóa hoàn toàn việc sử dụng password để login, nếu không có key thì sẽ không thể truy cập hệ thống.
+
+Tạo private key cho client và public key cho server như sau:
