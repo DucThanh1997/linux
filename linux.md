@@ -249,7 +249,7 @@ Câu lệnh renice yêu cầu cung cấp PID của tiến trình. Lệnh sau đ�
 
 ##Khái niệm:
 LVM (Logical Volume Manager) là một kỹ thuật cho phép tạo ra các không gian ổ đĩa ảo từ ổ đĩa cứng để có thể thay đổi kích thước dễ dàng hơn
-
+![lvm-vidu](https://user-images.githubusercontent.com/45547213/50389372-2c1d1580-075c-11e9-969b-77a4ec86363b.jpg)
 ## Vai trò:
 LVM giúp nới rộng hoặc thu hẹp không gian ổ đĩa mà không cần phải chia lại partition trên đĩa cứng, không ảnh hưởng đến hệ thống và các dịch vụ đang chạy.
 
