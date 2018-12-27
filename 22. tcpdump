@@ -1,0 +1,26 @@
+# TCPdump
+Tcpdump là phần mềm bắt gói tin trong mạng làm việc trên hầu hết các phiên bản hệ điều hành unix/linux.
+Tcpdump cho phép bắt và lưu lại những gói tin bắt được, từ đó chúng ta có thể sử dụng để phân tích.
+
+## 5 câu lệnh tcpdump 
+### 1 Bắt gói tin từ một giao diện ethernet cụ thể thông qua tcpdump -i
+Nếu bạn không có cái -i vào nó sẽ bắt qua tất cả những gì đi qua nó kiểu như này. Nhìn sợ cực
+![image](https://user-images.githubusercontent.com/45547213/50465356-64755b80-09c9-11e9-9627-53890ecf5477.png)
+
+### 2 Chỉ bắt số lượng N gói tin thông qua lệnh tcpdump -c 
+Ví dụ nè 
+![image](https://user-images.githubusercontent.com/45547213/50465390-9f778f00-09c9-11e9-9d5c-8e225d4d6bdc.png)
+
+### 3 Hiển thị các gói tin được bắt dưới dạng HEX và ASCII thông qua tcpdump -XX
+Một vài người dùng có thể muốn phân tích gói tin dưới dạng giá trị cơ số 16.
+tcpdump cung cấp một cách hiển thị gói tin dưới cả hai dạng ASCII và HEX.
+
+![image](https://user-images.githubusercontent.com/45547213/50465455-07c67080-09ca-11e9-9b3c-ef300400ff40.png)
+
+### 4 Đọc các gói tin từ một file thông qua tcpdump -r
+
+![image](https://user-images.githubusercontent.com/45547213/50465513-6b509e00-09ca-11e9-90f0-d85d34fbd624.png)
+
+### 5 Đọc các gói tin lớn hơn N byte
+Bạn có thể chỉ nhận những gói tin lớn hơn N byte thông qua một bộ lọc “greater”.
+![image](https://user-images.githubusercontent.com/45547213/50465544-8a4f3000-09ca-11e9-8614-7d7039cf288f.png)
