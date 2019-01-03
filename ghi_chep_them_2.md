@@ -72,6 +72,54 @@ lệnh netstat rất hữu dụng trong việc giải quyết các vấn đề v
 - `netstat -au`: Kiểm tra các port đang sử dụng phương phức UDP
 - `netstat -lt`: Kiểm tra các port đang listen dùng phương thức TCP
 
+## TCP và UDP
+### Định nghĩa:
+TCP (Transmission Control Protocol): Sử dụng TCP, các ứng dụng trên các máy chủ được nối mạng có thể tạo các "kết nối" với nhau, mà qua đó chúng có thể trao đổi dữ liệu hoặc các gói tin. Giao thức này đảm bảo chuyển giao dữ liệu tới nơi nhận một cách đáng tin cậy và đúng thứ tự. 
+
+UDP (User Control Protocol): Dùng UDP, chương trình trên mạng máy tính có thể gởi những dữ liệu ngắn được gọi là datagram tới máy khác. UDP không cung cấp sự tin cậy và thứ tự truyền nhận mà TCP làm; các gói dữ liệu có thể đến không đúng thứ tự hoặc bị mất mà không có thông báo. Tuy nhiên UDP nhanh và hiệu quả hơn đối với các mục tiêu như kích thước nhỏ và yêu cầu khắt khe về thời gian
+
+### Giống nhau:
+Giống nhau : đều là các giao thức mạng TCP/IP, đều có chức năng kết nối các máy lại với nhau, và có thể gửi dữ liệu cho nhau....
+### Khác nhau
+
+các header của TCP và UDP khác nhau ở kích thước (20 và 8 byte) nguyên nhân chủ yếu là do TCP phải hộ trợ nhiều chức năng hữu ích hơn(như khả năng khôi phục lỗi). UDP dùng ít byte hơn cho phần header và yêu cầu xử lý từ host ít hơn
+
+TCP :
+- Dùng cho mạng WAN
+- Không cho phép mất gói tin
+- Đảm bảo việc truyền dữ liệu
+- Tốc độ truyền thấp hơn UDP
+
+UDP:
+- Dùng cho mạng LAN
+- Cho phép mất dữ liệu
+- Không đảm bảo.
+- Tốc độ truyền cao, VolP truyền tốt qua UDP
 # kill -0
 kill -0 <pid> just gives a return value 0 if the process exists, and 1 if it doesn't.
 
+# Cách thêm tên người dùng và user vào file history
+- Truy cập vào file bashrc
+` sudo nano .bashrc `
+
+- Kéo đến cuối add thêm cái 
+` export HISTTIMEFORMAT="$USER %m/%d/%Y %H:%M " `
+
+- Save lại về terminal chạy lệnh 
+` source .bashrc`
+
+- chạy thử `history` để xem sự thay đổi
+
+
+# Ps
+Lệnh này thường để xem tất cả những process đang chạy và các thông tin về nó
+![image](https://user-images.githubusercontent.com/45547213/50621040-ee777400-0f35-11e9-8f8b-8038a6477ae0.png)
+
+- PID Process ID
+- A TTY(teletype terminals) là computer terminal. Trong ps, đó là cái terminal chạy cái command đó 
+- STAT: chỉ trạng thái của process (dead sleeping zombie) và điều kiện memory(high, low priority)
+- TIME: chạy được bao lâu r
+- COMMAND: lệnh
+## 1 vài câu lệnh cơ bản
+- Display process by user
+` ps -f -u www-data `
