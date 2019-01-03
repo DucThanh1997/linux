@@ -42,6 +42,6 @@ Chỉ số load process trung bình của hệ điều hành trong 1 5 và 15 ph
 nôm na có thể hiểu là khi bạn t 1 file và chưa sử dụng lệnh chmod nào cả thì các quyền sẽ được phân chia theo umask
 
 Vì Base Permission của file bất kỳ luôn là 666 (tức 110110110 khi chuyển sang dạng nhị phân), 
-nên nếu giá trị mask là 022 (có dạng nhị phân là 000010010 => dạng bù 1 của nó thì chuyển 1->0, 0->1 nên ta được 111101101) 
+nên nếu giá trị mask là 022 (022 có dạng nhị phân là 000010010 => dạng bù 1 của nó thì chuyển 1->0, 0->1 nên ta được 111101101) 
 thì quyền truy nhập chính thức của file sẽ là:
 110 110 110 AND 111 101 101 = 110 100 100 = 644 (rw-r–r–)
