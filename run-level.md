@@ -79,5 +79,5 @@ khi hệ thống khởi động với runlevel là 4 thì init sẽ chạy các 
   - bootwait: Khi khởi động, init sẽ thực hiện tiến trình trên dòng này và đợi cho đến khi nó kết thúc.
     Ngoài ra còn một số kiểu chạy nữa như ondermand, powerokwait...
     
-- Trường thứ tư (ví dụ: /etc/rc.d/rc 0, /sbin/mingetty tty1) là lệnh hoặc script mà init cần thực thi.
-  Trong ví dụ thì 0 và tty1 là đối số truyền vào cho script rc và lệnh mingetty.
+- Trường thứ tư là lệnh hoặc script mà init cần thực thi.
+  
