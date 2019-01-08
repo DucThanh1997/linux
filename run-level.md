@@ -34,6 +34,7 @@ có 7 level
 
 Run level mặc định trong Redhat và Debian được định nghĩa trong file /etc/inittab. Ví dụ trong Redhat:
 
+```
 #System initialization.
 
 si::sysinit:/etc/rc.d/rc.sysinit
@@ -54,7 +55,7 @@ l6:6:wait:/etc/rc.d/rc 6
 #Trap CTRL-ALT-DELETE
 
 ca::ctrlaltdel:/sbin/shutdown -t3 -r now
-
+```
 Giải thích:
 
 `l4:4:wait:/etc/rc.d/rc 4`
